@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
-    String name;
-    String middleName;
-    String lastName;
-    char sex;
-    int age;
-    Person mother;
-    Person father;
-    List<Person> siblings;
-    List<Person> children;
-    List<Pet> pets;
+    private String name;
+    private String middleName;
+    private String lastName;
+    private char sex;
+    private int age;
+    private Person mother;
+    private Person father;
+    private Person partner;
+    private List<Person> siblings = new ArrayList<>();
+    private List<Person> children = new ArrayList<>();
+    private List<Pet> pets = new ArrayList<>();
 
     public Person(String name, String lastName, int age, char sex) {
         this.name = name;
@@ -47,6 +48,10 @@ public class Person {
         this.siblings.add(sibling);
     }
 
+    public void addPartner(Person partner) {
+        this.partner = partner;
+    }
+
     public List<Person> getGrandchildren() {
         List<Person> grandChildren = new ArrayList<>();
 
@@ -54,6 +59,26 @@ public class Person {
             grandChildren.addAll(child.children);
         }
         return grandChildren;
+    }
+
+    public List<Pet> getPetsGrandchildren() {
+        List<Pet> pets = new ArrayList<>();
+        List<Person> grandchildren = this.getGrandchildren();
+        for (Person p : grandchildren) {
+            pets.addAll(p.getPets());
+        }
+        return pets;
+    }
+
+    public List<Person> getAllNieces() {
+        List<Person> nieces = new ArrayList<>();
+        List<Person> siblings = this.getSiblings();
+        for (Person p : siblings) {
+            if (p.getSex() == 'f') {
+                nieces.add(p);
+            }
+        }
+        return nieces;
     }
 
     public String getName() {
@@ -122,6 +147,10 @@ public class Person {
 
     public List<Pet> getPets() {
         return this.pets;
+    }
+
+    public Person getPartner() {
+        return this.partner;
     }
 
 }

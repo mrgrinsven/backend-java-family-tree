@@ -1,10 +1,10 @@
 package nl.novi.familytree;
 
 public class Pet {
-    String name;
-    int age;
-    String species;
-    Person owner;
+    private String name;
+    private int age;
+    private String species;
+    private Person owner;
 
     public Pet(String name, int age, String species) {
         this.name = name;
