@@ -1,5 +1,6 @@
 package nl.novi.familytree;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
+    Person person;
+    Person father;
+    Person mother;
+
+    // add before each example instead of instancing every method
+    @BeforeEach
+    public void setup(){
+        this.person = new Person("Jan", "Jansen", 18, 'm');
+        this.father = new Person("Jip", "Jansen", 45, 'm');
+        this.mother = new Person("Janneke", "Jansen", 43, 'f');
+    }
 
     @Test
     @DisplayName("Person mother and Person father should be added to Person person")
